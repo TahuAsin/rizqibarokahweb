@@ -9,13 +9,30 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-100 font-sans antialiased text-gray-900">
 
     <!-- Sidebar -->
-    <div class="flex h-screen overflow-hidden">
+    <div class="flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
         
-        <aside class="w-64 bg-white shadow-md flex-shrink-0 flex flex-col">
+        <!-- Backdrop -->
+        <div x-show="sidebarOpen" 
+             x-transition:enter="transition-opacity ease-linear duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition-opacity ease-linear duration-300"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             @click="sidebarOpen = false" 
+             class="fixed inset-0 z-20 bg-black/50 lg:hidden"
+             style="display: none;">
+        </div>
+
+        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" 
+               class="w-64 bg-white shadow-md flex-shrink-0 flex flex-col fixed inset-y-0 left-0 z-30 transition-transform duration-300 lg:static lg:translate-x-0">
             <div class="h-16 flex items-center justify-center border-b border-gray-100">
                 <span class="text-lg font-bold text-gray-800 tracking-wider">GROSIR ADMIN</span>
             </div>
@@ -64,10 +81,15 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 flex flex-col overflow-hidden">
+        <main class="flex-1 flex flex-col overflow-hidden w-full">
             <!-- Header -->
-            <header class="h-16 bg-white shadow-sm flex items-center justify-between px-8 z-10">
-                <h1 class="text-xl font-semibold text-gray-800">@yield('title')</h1>
+            <header class="h-16 bg-white shadow-sm flex items-center justify-between px-4 sm:px-8 z-10 flex-shrink-0">
+                <div class="flex items-center gap-3">
+                    <button @click="sidebarOpen = !sidebarOpen" class="p-1 -ml-1 text-gray-500 rounded-md lg:hidden hover:bg-gray-100 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <h1 class="text-xl font-semibold text-gray-800">@yield('title')</h1>
+                </div>
                 <div class="flex items-center gap-4">
                     <span class="text-sm font-medium text-gray-600">Halo, {{ auth()->user()->name }}</span>
                     <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold">
