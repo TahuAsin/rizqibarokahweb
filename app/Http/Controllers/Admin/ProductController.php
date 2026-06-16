@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ProductController extends Controller
 {
@@ -54,8 +56,21 @@ class ProductController extends Controller
 
         $uploadedImages = [];
         if ($request->hasFile('images')) {
+            $manager = new ImageManager(new Driver());
+            
             foreach ($request->file('images') as $index => $file) {
-                $path = $file->store('products', 'public');
+                // Generate a unique filename and set extension to jpg
+                $filename = Str::random(40) . '.jpg';
+                $path = 'products/' . $filename;
+                
+                // Read image, scale it down to max 1080px width, and compress to 80% quality JPEG
+                $image = $manager->read($file->getRealPath());
+                $image->scaleDown(width: 1080);
+                $encoded = $image->toJpeg(80);
+                
+                // Save compressed image to public storage
+                Storage::disk('public')->put($path, (string) $encoded);
+                
                 $fullPath = '/storage/' . $path;
                 $uploadedImages[] = $fullPath;
                 if ($index === 0) {
@@ -112,8 +127,17 @@ class ProductController extends Controller
         ];
 
         if ($request->hasFile('images')) {
+            $manager = new ImageManager(new Driver());
+            
             foreach ($request->file('images') as $index => $file) {
-                $path = $file->store('products', 'public');
+                $filename = Str::random(40) . '.jpg';
+                $path = 'products/' . $filename;
+                
+                $image = $manager->read($file->getRealPath());
+                $image->scaleDown(width: 1080);
+                $encoded = $image->toJpeg(80);
+                
+                Storage::disk('public')->put($path, (string) $encoded);
                 $fullPath = '/storage/' . $path;
                 
                 $product->images()->create(['image_path' => $fullPath]);
