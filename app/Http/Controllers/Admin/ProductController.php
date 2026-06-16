@@ -64,9 +64,9 @@ class ProductController extends Controller
                 $path = 'products/' . $filename;
                 
                 // Read image, scale it down to max 1080px width, and compress to 80% quality JPEG
-                $image = $manager->read($file->getRealPath());
+                $image = $manager->decode($file->getRealPath());
                 $image->scaleDown(width: 1080);
-                $encoded = $image->toJpeg(80);
+                $encoded = $image->encode(new \Intervention\Image\Encoders\JpegEncoder(quality: 80));
                 
                 // Save compressed image to public storage
                 Storage::disk('public')->put($path, (string) $encoded);
@@ -133,9 +133,9 @@ class ProductController extends Controller
                 $filename = Str::random(40) . '.jpg';
                 $path = 'products/' . $filename;
                 
-                $image = $manager->read($file->getRealPath());
+                $image = $manager->decode($file->getRealPath());
                 $image->scaleDown(width: 1080);
-                $encoded = $image->toJpeg(80);
+                $encoded = $image->encode(new \Intervention\Image\Encoders\JpegEncoder(quality: 80));
                 
                 Storage::disk('public')->put($path, (string) $encoded);
                 $fullPath = '/storage/' . $path;
