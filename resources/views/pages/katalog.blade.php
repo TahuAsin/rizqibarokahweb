@@ -58,9 +58,9 @@
 
                     <!-- Top Rated Products -->
                     <div class="mt-12 hidden lg:block">
-                        <h3 class="text-xl font-bold text-[#1b3b22] mb-6 font-serif border-b-2 border-[#b8860b] pb-2 inline-block">Terlaris</h3>
+                        <h3 class="text-xl font-bold text-[#1b3b22] mb-6 font-serif border-b-2 border-[#b8860b] pb-2 inline-block">Produk Terbaru</h3>
                         <div class="space-y-4">
-                            @foreach($products->take(3) as $topProduct)
+                            @foreach($latestProducts as $topProduct)
                             <div class="flex items-center gap-4 group cursor-pointer bg-white border border-transparent hover:border-[#b8860b]/50 p-2 rounded transition" onclick="window.location='{{ route('katalog.show', $topProduct->slug) }}'">
                                 <div class="w-16 h-16 bg-[#fdfbf7] border border-[#1b3b22]/10 flex-shrink-0 flex items-center justify-center p-1">
                                     <img src="{{ $topProduct->image_path ?: 'https://via.placeholder.com/150' }}" class="max-w-full max-h-full object-contain mix-blend-multiply group-hover:scale-110 transition duration-300 drop-shadow-sm">
@@ -105,42 +105,41 @@
                 @endif
 
                 @if($products->count() > 0)
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
                         @foreach($products as $product)
                         <div class="group flex flex-col h-full bg-white border border-[#1b3b22]/10 rounded-lg overflow-hidden hover:shadow-xl transition duration-300 hover:border-[#b8860b]/50">
                             <!-- Image Container -->
-                            <div class="bg-[#fdfbf7] aspect-w-1 aspect-h-1 relative flex items-center justify-center p-6 h-[260px] border-b border-[#1b3b22]/5">
+                            <div class="bg-[#fdfbf7] aspect-w-1 aspect-h-1 relative flex items-center justify-center p-3 sm:p-6 h-[160px] sm:h-[260px] border-b border-[#1b3b22]/5">
                                 <a href="{{ route('katalog.show', $product->slug) }}" class="block w-full h-full flex items-center justify-center relative">
                                     <!-- Decorative corner -->
-                                    <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#b8860b] opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                                    <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#b8860b] opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                                    <div class="absolute top-0 left-0 w-4 h-4 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#b8860b] opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                                    <div class="absolute bottom-0 right-0 w-4 h-4 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#b8860b] opacity-0 group-hover:opacity-100 transition duration-500"></div>
                                     
                                     <img src="{{ $product->image_path ?: 'https://via.placeholder.com/400' }}" alt="{{ $product->name }}" class="max-w-full max-h-full object-contain mix-blend-multiply group-hover:scale-110 transition duration-500 drop-shadow-md">
                                 </a>
-                                <!-- Removed Sale Badge -->
                             </div>
                             
                             <!-- Info Container -->
-                            <div class="flex flex-col flex-grow text-center p-5 relative">
-                                <div class="text-[10px] text-[#b8860b] uppercase tracking-widest font-bold mb-2">
+                            <div class="flex flex-col flex-grow text-center p-2 sm:p-5 relative">
+                                <div class="text-[8px] sm:text-[10px] text-[#b8860b] uppercase tracking-widest font-bold mb-1 sm:mb-2">
                                     {{ $product->category->name ?? 'Kategori Umum' }}
                                 </div>
                                 
-                                <h3 class="text-lg font-bold text-[#1b3b22] mb-3 font-serif leading-snug">
+                                <h3 class="text-xs sm:text-lg font-bold text-[#1b3b22] mb-1 sm:mb-3 font-serif leading-snug line-clamp-2">
                                     <a href="{{ route('katalog.show', $product->slug) }}" class="hover:text-[#b8860b] transition">
                                         {{ $product->name }}
                                     </a>
                                 </h3>
                                 
-                                <div class="flex items-center justify-center gap-2 mb-3 mt-auto">
-                                    <span class="text-gray-900 font-bold text-base">
+                                <div class="flex items-center justify-center gap-2 mb-2 sm:mb-3 mt-auto">
+                                    <span class="text-gray-900 font-bold text-xs sm:text-base">
                                         Rp{{ number_format($product->productSizes->min('price') ?? 0, 0, ',', '.') }}
                                     </span>
                                 </div>
 
                                 <!-- Action Button -->
-                                <a href="{{ route('katalog.show', $product->slug) }}" class="w-full bg-transparent border-2 border-[#1b3b22] text-[#1b3b22] group-hover:bg-[#1b3b22] group-hover:text-[#fdfbf7] text-center font-bold py-2 text-sm transition uppercase tracking-wider font-serif">
-                                    Tingali (Lihat)
+                                <a href="{{ route('katalog.show', $product->slug) }}" class="w-full bg-transparent border border-sm sm:border-2 border-[#1b3b22] text-[#1b3b22] group-hover:bg-[#1b3b22] group-hover:text-[#fdfbf7] text-center font-bold py-1.5 sm:py-2 text-[10px] sm:text-sm transition uppercase tracking-wider font-serif">
+                                    Tingali
                                 </a>
                             </div>
                         </div>

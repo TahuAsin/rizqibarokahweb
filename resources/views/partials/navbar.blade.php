@@ -4,8 +4,7 @@
             <!-- Logo -->
             <div class="flex items-center">
                 <a href="{{ route('home') }}" class="flex-shrink-0 flex items-center gap-3 group">
-                    <!-- Image Logo (Upload logo.png ke folder public) -->
-                    <img src="{{ asset('logo.png') }}" alt="Logo Rizqi Barokah" class="h-[130px] md:h-[170px] -my-[45px] w-auto object-contain relative z-50 transition duration-300 group-hover:scale-105 drop-shadow-md">
+                    <img src="{{ asset('logo.png') }}" alt="Logo Rizqi Barokah" class="h-[60px] md:h-[80px] w-auto object-contain relative z-50 transition duration-300 group-hover:scale-105 drop-shadow-sm">
                 </a>
             </div>
             

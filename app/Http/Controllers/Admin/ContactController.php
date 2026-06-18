@@ -18,7 +18,7 @@ class ContactController extends Controller
     {
         $validated = $request->validate([
             'whatsapp' => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255',
+            'email' => 'nullable|string|max:255',
             'address' => 'nullable|string',
             'map_embed' => 'nullable|string',
         ]);

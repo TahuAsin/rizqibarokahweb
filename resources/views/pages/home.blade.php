@@ -9,7 +9,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col-reverse md:flex-row items-center justify-between py-12 md:py-16 gap-8">
         
         <!-- Text Content -->
-        <div class="w-full md:w-1/2">
+        <div class="w-full md:w-1/2" data-aos="fade-right">
             <h1 class="text-5xl md:text-7xl font-bold text-[#3e2723] leading-tight mb-2 font-serif">
                 Sugeng Rawuh
             </h1>
@@ -54,7 +54,7 @@
         </div>
 
         <!-- Image Content (Framed) -->
-        <div class="w-full md:w-1/2 flex justify-center md:justify-end relative">
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end relative" data-aos="fade-left" data-aos-delay="200">
             <div class="relative w-full max-w-md">
                 <!-- Background decorative frame -->
                 <div class="absolute inset-0 bg-[#b8860b] rounded-tl-[100px] rounded-br-[100px] transform translate-x-4 translate-y-4 opacity-50"></div>
@@ -80,7 +80,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <!-- Section Title -->
-        <div class="text-center mb-16">
+        <div class="text-center mb-16" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold text-[#1b3b22] font-serif mb-4 tracking-wide">Pelayanan Kagem Panjenengan</h2>
             <div class="flex justify-center items-center gap-3">
                 <div class="w-16 h-[2px] bg-[#b8860b]"></div>
@@ -93,7 +93,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Feature 1 -->
-            <div class="bg-white p-8 border-2 border-[#b8860b] relative group hover:-translate-y-2 transition duration-300 shadow-[6px_6px_0px_0px_#1b3b22]">
+            <div class="bg-white p-8 border-2 border-[#b8860b] relative group hover:-translate-y-2 transition duration-300 shadow-[6px_6px_0px_0px_#1b3b22]" data-aos="zoom-in" data-aos-delay="100">
                 <!-- Corner Ornaments -->
                 <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#1b3b22] m-1"></div>
                 <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#1b3b22] m-1"></div>
@@ -113,7 +113,7 @@
             </div>
 
             <!-- Feature 2 -->
-            <div class="bg-white p-8 border-2 border-[#b8860b] relative group hover:-translate-y-2 transition duration-300 shadow-[6px_6px_0px_0px_#1b3b22]">
+            <div class="bg-white p-8 border-2 border-[#b8860b] relative group hover:-translate-y-2 transition duration-300 shadow-[6px_6px_0px_0px_#1b3b22]" data-aos="zoom-in" data-aos-delay="200">
                 <!-- Corner Ornaments -->
                 <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#1b3b22] m-1"></div>
                 <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#1b3b22] m-1"></div>
@@ -133,7 +133,7 @@
             </div>
 
             <!-- Feature 3 -->
-            <div class="bg-white p-8 border-2 border-[#b8860b] relative group hover:-translate-y-2 transition duration-300 shadow-[6px_6px_0px_0px_#1b3b22]">
+            <div class="bg-white p-8 border-2 border-[#b8860b] relative group hover:-translate-y-2 transition duration-300 shadow-[6px_6px_0px_0px_#1b3b22]" data-aos="zoom-in" data-aos-delay="300">
                 <!-- Corner Ornaments -->
                 <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#1b3b22] m-1"></div>
                 <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#1b3b22] m-1"></div>
@@ -153,7 +153,7 @@
             </div>
 
             <!-- Feature 4 -->
-            <div class="bg-white p-8 border-2 border-[#b8860b] relative group hover:-translate-y-2 transition duration-300 shadow-[6px_6px_0px_0px_#1b3b22]">
+            <div class="bg-white p-8 border-2 border-[#b8860b] relative group hover:-translate-y-2 transition duration-300 shadow-[6px_6px_0px_0px_#1b3b22]" data-aos="zoom-in" data-aos-delay="400">
                 <!-- Corner Ornaments -->
                 <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#1b3b22] m-1"></div>
                 <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#1b3b22] m-1"></div>
@@ -176,33 +176,33 @@
 </div>
 
 <!-- New Arrivals Section -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <div class="flex flex-col sm:flex-row justify-between items-end mb-12 border-b border-[#b8860b]/30 pb-4">
-        <div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 overflow-hidden">
+    <div class="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-12 border-b border-[#b8860b]/30 pb-6 gap-6" data-aos="fade-up">
+        <div class="text-center sm:text-left">
             <p class="text-[#b8860b] font-serif italic mb-1 text-lg">Cek produk terbaru kagem putra-putri</p>
             <h2 class="text-4xl font-bold text-[#1b3b22] font-serif tracking-wide">Koleksi Terbaru</h2>
         </div>
-        <a href="{{ route('katalog.index') }}" class="mt-4 sm:mt-0 border-2 border-[#1b3b22] text-[#1b3b22] font-bold uppercase tracking-widest text-sm px-8 py-3 hover:bg-[#1b3b22] hover:text-[#fdfbf7] transition duration-300 shadow-sm">
+        <a href="{{ route('katalog.index') }}" class="w-full sm:w-auto text-center border-2 border-[#1b3b22] text-[#1b3b22] font-bold uppercase tracking-widest text-sm px-8 py-3 hover:bg-[#1b3b22] hover:text-[#fdfbf7] transition duration-300 shadow-sm">
             LIHAT SEMUA
         </a>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
         @foreach($latestProducts as $product)
-        <div class="group relative bg-white p-3 border border-[#b8860b]/30 shadow-sm hover:shadow-lg transition duration-300">
-            <div class="aspect-w-1 aspect-h-1 overflow-hidden relative mb-4 bg-[#faeed4] border border-[#b8860b]/20">
-                <img src="{{ $product->image_path ?: 'https://via.placeholder.com/400' }}" alt="{{ $product->name }}" class="w-full h-72 object-center object-cover group-hover:scale-110 transition duration-700">
+        <div class="group relative bg-white p-2 sm:p-3 border border-[#b8860b]/30 shadow-sm hover:shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+            <div class="aspect-w-1 aspect-h-1 overflow-hidden relative mb-3 sm:mb-4 bg-[#faeed4] border border-[#b8860b]/20">
+                <img src="{{ $product->image_path ?: 'https://via.placeholder.com/400' }}" alt="{{ $product->name }}" class="w-full h-40 sm:h-72 object-center object-cover group-hover:scale-110 transition duration-700">
                 <!-- Removed GROSIR badge -->
             </div>
-            <div class="px-2 pb-2">
-                <h3 class="text-lg font-bold text-[#3e2723] font-serif mb-1 group-hover:text-[#1b3b22] transition line-clamp-1">
+            <div class="px-1 sm:px-2 pb-1 sm:pb-2">
+                <h3 class="text-sm sm:text-lg font-bold text-[#3e2723] font-serif mb-1 group-hover:text-[#1b3b22] transition line-clamp-2 sm:line-clamp-1 leading-tight">
                     <a href="{{ route('katalog.show', $product->slug) }}">
                         <span aria-hidden="true" class="absolute inset-0"></span>
                         {{ $product->name }}
                     </a>
                 </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    <p class="text-[#1b3b22] font-bold text-lg">
+                <div class="flex items-center gap-2 mt-1 sm:mt-2">
+                    <p class="text-[#1b3b22] font-bold text-sm sm:text-lg">
                         @if($product->productSizes->count() > 0)
                             Rp{{ number_format($product->productSizes->min('price'), 0, ',', '.') }}
                         @else

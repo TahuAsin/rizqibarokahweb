@@ -28,10 +28,11 @@ class ProductController extends Controller
         }
 
         $products = $query->latest()->paginate(12);
+        $latestProducts = Product::with('productSizes')->latest()->take(3)->get();
         $categories = Category::all();
         $sizes = ['Bayi/NB', '0/XS', 'S', 'M', 'L', 'XL', 'XXL', 'L4', 'L5', 'Jumbo'];
 
-        return view('pages.katalog', compact('products', 'categories', 'sizes'));
+        return view('pages.katalog', compact('products', 'latestProducts', 'categories', 'sizes'));
     }
 
     public function show($slug)

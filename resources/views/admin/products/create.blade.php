@@ -10,71 +10,97 @@
     </a>
 </div>
 
-<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+<div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+    <!-- Header Card -->
+    <div class="bg-gradient-to-r from-[#1b3b22] to-[#2c5c35] px-8 py-6 border-b border-gray-100">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2 font-serif tracking-wide">
+            <svg class="w-6 h-6 text-[#b8860b]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Tambah Produk Baru
+        </h2>
+        <p class="text-[#faeed4] text-sm mt-1 opacity-90">Lengkapi formulir di bawah ini untuk menambahkan katalog produk ke toko Anda.</p>
+    </div>
+
     <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="p-8">
         @csrf
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
             <!-- Kolom Kiri: Informasi Dasar -->
-            <div class="lg:col-span-2 space-y-6">
-                <h3 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">Informasi Dasar</h3>
+            <div class="lg:col-span-2 space-y-7">
                 
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk <span class="text-red-500">*</span></label>
-                    <input type="text" name="name" id="name" value="{{ old('name') }}" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 outline-none transition @error('name') border-red-500 @enderror">
+                    <label for="name" class="block text-sm font-bold text-gray-700 mb-2">Nama Produk <span class="text-red-500">*</span></label>
+                    <input type="text" name="name" id="name" value="{{ old('name') }}" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-[#b8860b]/20 focus:border-[#b8860b] outline-none transition-all duration-300 @error('name') border-red-500 @enderror" placeholder="Contoh: Beskap Anak Bludru Premium">
                     @error('name') <p class="mt-1 text-sm text-red-500">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
-                    <label for="category_id" class="block text-sm font-medium text-gray-700 mb-1">Kategori <span class="text-red-500">*</span></label>
-                    <select name="category_id" id="category_id" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 outline-none transition bg-white @error('category_id') border-red-500 @enderror">
-                        <option value="">-- Pilih Kategori --</option>
-                        @foreach($categories as $category)
-                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-                        @endforeach
-                    </select>
+                    <label for="category_id" class="block text-sm font-bold text-gray-700 mb-2">Kategori <span class="text-red-500">*</span></label>
+                    <div class="relative">
+                        <select name="category_id" id="category_id" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-[#b8860b]/20 focus:border-[#b8860b] outline-none transition-all duration-300 appearance-none @error('category_id') border-red-500 @enderror">
+                            <option value="">-- Pilih Kategori --</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
                     @error('category_id') <p class="mt-1 text-sm text-red-500">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
-                    <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Produk</label>
-                    <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 outline-none transition @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
+                    <label for="description" class="block text-sm font-bold text-gray-700 mb-2">Deskripsi Produk</label>
+                    <div class="rounded-xl overflow-hidden border border-gray-200 focus-within:border-[#b8860b] focus-within:ring-4 focus-within:ring-[#b8860b]/20 transition-all duration-300">
+                        <textarea name="description" id="description" rows="5" class="w-full px-4 py-3 border-none outline-none @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
+                    </div>
                     @error('description') <p class="mt-1 text-sm text-red-500">{{ $message }}</p> @enderror
-                    <p class="mt-1 text-xs text-gray-500">Jelaskan bahan, detail motif, atau informasi penting lainnya.</p>
+                    <p class="mt-2 text-xs text-gray-500 flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Jelaskan bahan, motif, atau informasi penting lainnya secara menarik.
+                    </p>
                 </div>
             </div>
 
             <!-- Kolom Kanan: Media & Ukuran -->
-            <div class="space-y-8">
+            <div class="space-y-8 bg-gray-50/50 p-6 rounded-2xl border border-gray-100">
                 <div>
-                    <h3 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">Gambar Produk (Bisa lebih dari 1)</h3>
+                    <h3 class="text-sm font-bold text-gray-800 uppercase tracking-wider mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-[#b8860b]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        Foto Produk
+                    </h3>
                     
-                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50 hover:bg-gray-100 transition relative">
-                        <div class="space-y-1 text-center">
-                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+                    <div class="mt-1 flex justify-center px-6 pt-6 pb-8 border-2 border-dashed border-[#b8860b]/40 rounded-xl bg-white hover:bg-[#faeed4]/30 transition duration-300 relative group cursor-pointer" onclick="document.getElementById('images').click()">
+                        <div class="space-y-2 text-center">
+                            <div class="w-14 h-14 bg-[#faeed4] text-[#b8860b] rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition duration-300 shadow-sm">
+                                <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </div>
                             <div class="flex text-sm text-gray-600 justify-center">
-                                <label for="images" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500 px-1">
-                                    <span>Upload file(s)</span>
+                                <label for="images" class="relative cursor-pointer bg-transparent rounded-md font-medium text-[#1b3b22] hover:text-[#b8860b]">
+                                    <span>Pilih Gambar</span>
                                     <input id="images" name="images[]" type="file" class="sr-only" accept="image/jpeg,image/png,image/jpg" multiple onchange="previewImages(this)">
                                 </label>
                             </div>
-                            <p class="text-xs text-gray-500">PNG, JPG up to 2MB. Tahan CTRL/CMD untuk pilih banyak gambar.</p>
+                            <p class="text-xs text-gray-400">JPG, PNG maksimal 2MB per foto.</p>
                         </div>
                     </div>
                     @error('images') <p class="mt-1 text-sm text-red-500">{{ $message }}</p> @enderror
                     
                     <!-- Preview Container -->
-                    <div id="image-preview-container" class="mt-4 grid grid-cols-3 gap-2 hidden">
+                    <div id="image-preview-container" class="mt-4 grid grid-cols-3 gap-3 hidden">
                         <!-- Preview images will be inserted here -->
                     </div>
                 </div>
 
-                <div>
-                    <div class="flex justify-between items-center border-b border-gray-100 pb-2 mb-4">
-                        <h3 class="text-lg font-bold text-gray-900">Variasi & Harga</h3>
-                        <button type="button" onclick="addSizeRow()" class="text-sm text-blue-600 font-bold hover:underline flex items-center gap-1">
+                <div class="pt-6 border-t border-gray-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-bold text-gray-800 uppercase tracking-wider flex items-center gap-2">
+                            <svg class="w-5 h-5 text-[#b8860b]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+                            Variasi & Harga
+                        </h3>
+                        <button type="button" onclick="addSizeRow()" class="text-xs bg-[#faeed4] text-[#1b3b22] font-bold px-3 py-1.5 rounded-lg hover:bg-[#b8860b] hover:text-white transition flex items-center gap-1 shadow-sm">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                             Tambah
                         </button>
@@ -82,13 +108,13 @@
 
                     <div id="sizes-container" class="space-y-3">
                         <!-- Baris Variasi Default -->
-                        <div class="flex gap-2 items-start size-row">
+                        <div class="flex gap-2 items-start size-row bg-white p-2 border border-gray-200 rounded-xl shadow-sm">
                             <div class="w-1/3">
-                                <input type="text" name="sizes[0][size]" placeholder="Ukuran (M)" required class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-900 focus:border-gray-900 outline-none">
+                                <input type="text" name="sizes[0][size]" placeholder="Ukuran" required class="w-full px-3 py-2.5 bg-gray-50 border border-transparent rounded-lg text-sm focus:bg-white focus:border-[#b8860b] focus:ring-2 focus:ring-[#b8860b]/20 outline-none transition">
                             </div>
                             <div class="w-2/3 flex gap-2">
-                                <input type="number" name="sizes[0][price]" placeholder="Harga (Rp)" required min="0" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-900 focus:border-gray-900 outline-none">
-                                <button type="button" onclick="removeSizeRow(this)" class="px-2 py-2 text-red-500 hover:bg-red-50 rounded border border-transparent hover:border-red-200 transition">
+                                <input type="number" name="sizes[0][price]" placeholder="Harga (Rp)" required min="0" class="w-full px-3 py-2.5 bg-gray-50 border border-transparent rounded-lg text-sm focus:bg-white focus:border-[#b8860b] focus:ring-2 focus:ring-[#b8860b]/20 outline-none transition">
+                                <button type="button" onclick="removeSizeRow(this)" class="px-2.5 py-2 text-red-500 hover:bg-red-50 rounded-lg transition" title="Hapus variasi">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                                 </button>
                             </div>
@@ -98,9 +124,12 @@
             </div>
         </div>
 
-        <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end gap-4">
-            <a href="{{ route('admin.products.index') }}" class="px-6 py-2.5 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition">Batal</a>
-            <button type="submit" class="px-6 py-2.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-black transition shadow-sm">Simpan Produk</button>
+        <div class="mt-10 pt-6 border-t border-gray-100 flex justify-end gap-4">
+            <a href="{{ route('admin.products.index') }}" class="px-6 py-3 border border-gray-300 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition tracking-wide">Batal</a>
+            <button type="submit" class="px-8 py-3 bg-[#1b3b22] text-[#fdfbf7] font-bold rounded-xl hover:bg-[#122817] hover:shadow-lg transition flex items-center gap-2 tracking-wide">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Simpan Produk
+            </button>
         </div>
     </form>
 </div>
@@ -111,14 +140,14 @@
     function addSizeRow() {
         const container = document.getElementById('sizes-container');
         const row = document.createElement('div');
-        row.className = 'flex gap-2 items-start size-row';
+        row.className = 'flex gap-2 items-start size-row bg-white p-2 border border-gray-200 rounded-xl shadow-sm';
         row.innerHTML = `
             <div class="w-1/3">
-                <input type="text" name="sizes[${sizeIndex}][size]" placeholder="Ukuran" required class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-900 focus:border-gray-900 outline-none">
+                <input type="text" name="sizes[${sizeIndex}][size]" placeholder="Ukuran" required class="w-full px-3 py-2.5 bg-gray-50 border border-transparent rounded-lg text-sm focus:bg-white focus:border-[#b8860b] focus:ring-2 focus:ring-[#b8860b]/20 outline-none transition">
             </div>
             <div class="w-2/3 flex gap-2">
-                <input type="number" name="sizes[${sizeIndex}][price]" placeholder="Harga (Rp)" required min="0" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-900 focus:border-gray-900 outline-none">
-                <button type="button" onclick="removeSizeRow(this)" class="px-2 py-2 text-red-500 hover:bg-red-50 rounded border border-transparent hover:border-red-200 transition">
+                <input type="number" name="sizes[${sizeIndex}][price]" placeholder="Harga (Rp)" required min="0" class="w-full px-3 py-2.5 bg-gray-50 border border-transparent rounded-lg text-sm focus:bg-white focus:border-[#b8860b] focus:ring-2 focus:ring-[#b8860b]/20 outline-none transition">
+                <button type="button" onclick="removeSizeRow(this)" class="px-2.5 py-2 text-red-500 hover:bg-red-50 rounded-lg transition" title="Hapus variasi">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                 </button>
             </div>
@@ -162,4 +191,18 @@
         }
     }
 </script>
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: '#description',
+        menubar: false,
+        plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+        promotion: false
+    });
+</script>
+@endpush
 @endsection

@@ -91,7 +91,7 @@
                     <h1 class="text-xl font-semibold text-gray-800">@yield('title')</h1>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm font-medium text-gray-600">Halo, {{ auth()->user()->name }}</span>
+                    <span class="hidden sm:inline text-sm font-medium text-gray-600">Halo, {{ auth()->user()->name }}</span>
                     <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold">
                         {{ substr(auth()->user()->name, 0, 1) }}
                     </div>
@@ -99,7 +99,7 @@
             </header>
 
             <!-- Content -->
-            <div class="flex-1 overflow-auto p-8">
+            <div class="flex-1 overflow-auto p-4 md:p-8">
                 @if(session('success'))
                     <div class="mb-6 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg" role="alert">
                         <span class="block sm:inline">{{ session('success') }}</span>
@@ -116,6 +116,6 @@
             </div>
         </main>
     </div>
-
+    @stack('scripts')
 </body>
 </html>
